@@ -130,44 +130,37 @@ body {
 /* HOBBIES */
 .hobbies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .hobby-item { text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+/* --- Base Hobby Icon (Oval Putih) --- */
 .hobby-icon {
     width: 100px;
     height: 100px;
     margin: 0 auto 1.5rem;
-    background: white; /* Latar oval putih */
+    background: #ffffff; /* Latar belakang putih */
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
     color: #4A90E2;
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    /* Animasi Oval Mutar */
+    animation: rotateOval 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* --- Animasi Gaming (Mutar lalu diam + muncul gamepad) --- */
-.icon-gaming {
-    animation: rotateOval 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-}
-
-.icon-gaming i, .icon-gaming .dots {
+/* --- Animasi Gaming (Gamepad muncul setelah mutar) --- */
+.icon-gaming i {
+    font-size: 2.5rem;
     opacity: 0;
-    animation: popIn 0.5s 1.2s forwards;
+    transform: scale(0.5);
+    animation: iconPop 0.5s 1s forwards; /* Muncul setelah 1 detik */
 }
 
-@keyframes rotateOval {
-    0% { transform: rotate(0deg) scale(0); }
-    70% { transform: rotate(380deg) scale(1.1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-/* --- Animasi WiFi (Lengkungan bertahap) --- */
+/* --- Animasi WiFi (Lengkungan Bertahap) --- */
 .icon-wifi {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 20px;
+    justify-content: center;
 }
 
 .icon-wifi .dot {
@@ -175,44 +168,52 @@ body {
     height: 8px;
     background: #4A90E2;
     border-radius: 50%;
-    animation: wifiPop 0.3s 0.5s forwards;
+    position: absolute;
+    bottom: 25%;
     opacity: 0;
+    animation: wifiShow 0.3s 0.8s forwards;
 }
 
 .icon-wifi .arc {
-    border: 3px solid #4A90E2;
-    border-color: #4A90E2 transparent transparent transparent;
-    border-radius: 50%;
     position: absolute;
+    border: 3px solid transparent;
+    border-top-color: #4A90E2;
+    border-radius: 50%;
     opacity: 0;
 }
 
-.arc-1 { width: 30px; height: 30px; bottom: 30px; animation: wifiArc 0.5s 0.8s forwards; }
-.arc-2 { width: 50px; height: 50px; bottom: 40px; animation: wifiArc 0.5s 1.1s forwards; }
+.arc-1 { width: 30px; height: 30px; bottom: 30%; animation: wifiShow 0.4s 1.1s forwards; }
+.arc-2 { width: 50px; height: 50px; bottom: 35%; animation: wifiShow 0.4s 1.4s forwards; }
+.arc-3 { width: 70px; height: 70px; bottom: 40%; animation: wifiShow 0.4s 1.7s forwards; }
 
-@keyframes wifiPop { to { opacity: 1; transform: scale(1); } }
-@keyframes wifiArc { 
-    0% { opacity: 0; transform: translateY(10px); }
+/* --- Animasi Music --- */
+.icon-music i {
+    font-size: 2.5rem;
+    opacity: 0;
+    animation: iconPop 0.6s 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- KEYFRAMES --- */
+@keyframes rotateOval {
+    0% { transform: rotate(0deg) scale(0); opacity: 0; }
+    100% { transform: rotate(360deg) scale(1); opacity: 1; }
+}
+
+@keyframes iconPop {
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes wifiShow {
+    0% { opacity: 0; transform: translateY(5px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Animasi Music (Pop In) --- */
-.icon-music i {
-    font-size: 2.5rem;
-    transform: scale(0);
-    animation: musicPop 0.6s 0.5s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
-}
-
-@keyframes musicPop {
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Re-trigger animasi saat hover kartu */
+/* Efek Hover tambahan agar tetap interaktif */
 .hobby-item:hover .hobby-icon {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
+    transition: 0.3s;
 }
-
 
 /* JKT48 EASTER EGG */
 .lily-link { color: #4A90E2; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
