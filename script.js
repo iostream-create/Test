@@ -172,3 +172,15 @@ const refreshObserver = () => {
 
 // Panggil fungsi jika ada konten baru yang dimuat
 document.addEventListener('DOMContentLoaded', refreshObserver);
+
+// Efek Teks Connect muncul secara berkala mengikuti sinyal
+const connectStatus = document.getElementById('connect-status');
+
+function triggerConnectText() {
+    // Menambahkan class show setiap beberapa detik
+    connectStatus.classList.add('show');
+}
+
+// Jalankan fungsi
+triggerConnectText();
+
