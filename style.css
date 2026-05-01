@@ -1,261 +1,124 @@
-/* Reset and base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Body dan Background */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #081434 0%, #1c2766 100%);
-  color: white;
+  line-height: 1.6;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2a2a5e 100%);
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  z-index: 0;
 }
-a {
-  text-decoration: none;
-  color: inherit;
-}
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-.section {
-  padding: 80px 0 100px;
-  text-align: center;
+
+/* Background canvas pengganti background */
+.background canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  mix-blend-mode: screen; /* biar lebih menyatu dengan background */
+  opacity: 0.75; /* transparansi agar bg masih terlihat */
 }
 
 /* Navbar */
 .navbar {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  background: rgba(12, 20, 51, 0.85);
-  backdrop-filter: blur(10px);
-  padding: 18px 0;
-  z-index: 10000;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-  transition: background 0.3s ease;
-}
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-.nav-logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #4a90e2;
-  user-select: none;
-}
-.nav-menu {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-}
-.nav-menu li {
-  position: relative;
+  background: rgba(15, 15, 35, 0.95);
+  padding: 1rem 2rem;
+  z-index: 1000;
 }
 .nav-menu li a {
-  font-weight: 600;
   font-size: 1rem;
-  color: white;
-  transition: color 0.3s ease;
-  padding-bottom: 2px;
-}
-.nav-menu li a:hover,
-.nav-menu li a.active {
-  color: #5ea9f5;
-}
-.nav-menu li a.active::after,
-.nav-menu li a:hover::after {
-  content: "";
-  position: absolute;
-  width: 70%;
-  height: 3px;
-  background: #5ea9f5;
-  left: 15%;
-  bottom: 0;
-  border-radius: 99px;
+  padding: 0.5rem 1rem;
 }
 
 /* Hero Section */
-.hero-content {
-  padding-top: 140px;
-  padding-bottom: 80px;
-}
-.profile-pic {
-  width: 180px;
-  height: 180px;
-  margin: 0 auto 20px auto;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid rgba(74, 144, 226, 0.4);
-  box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
-  transition: transform 0.5s ease;
-}
-.profile-pic:hover {
-  transform: scale(1.05) rotate(6deg);
-  box-shadow: 0 25px 60px rgba(74, 144, 226, 0.7);
-}
-.profile-pic img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .hero-title {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
+  font-weight: 700;
   background: linear-gradient(135deg, #4a90e2, #7ab8f5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .hero-subtitle {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.87);
-  margin-bottom: 30px;
-  font-weight: 500;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.btn-primary,
-.btn-secondary {
-  padding: 12px 34px;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  user-select: none;
-}
-.btn-primary {
-  background: linear-gradient(135deg, #4a90e2, #7ab8f5);
-  color: white;
-}
-.btn-primary:hover {
-  box-shadow: 0 12px 30px rgba(74, 144, 226, 0.6);
-  transform: translateY(-3px);
-}
-.btn-secondary {
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-}
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #4a90e2;
-}
-
-/* Section Titles */
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 3.8rem;
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(135deg, #4a90e2, #7ab8f5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.section-title::after {
-  content: "";
-  position: absolute;
-  width: 60%;
-  height: 4px;
-  background: linear-gradient(90deg, #4a90e2, #7ab8f5);
-  border-radius: 2px;
-  left: 20%;
-  bottom: -15px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 1.8rem;
 }
 
 /* Skills Grid */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto;
 }
+
+/* Skill Item */
 .skill-item {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 30px 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 18px 12px;
   cursor: pointer;
-  overflow: visible;
-  position: relative;
-  user-select: none;
   display: flex;
   align-items: center;
-  gap: 18px;
-  box-shadow: 0 0 15px transparent;
+  gap: 14px;
+  position: relative;
+  box-shadow: 0 0 8px transparent;
   transition: box-shadow 0.3s ease;
 }
 .skill-item:hover {
-  box-shadow: 0 10px 50px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
 }
 
-/* Skill Ball (initial circle) */
 .skill-ball {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: #777;
+  transition: all 0.4s ease;
+  flex-shrink: 0;
   position: relative;
-  transition: background 0.5s ease, transform 0.5s ease;
-}
-.skill-ball.active {
-  width: 72px;
-  height: 72px;
-  transform-origin: center center;
 }
 
-/* Skill logos hidden initially */
-.skill-logo {
+/* Ball Resize on active scaled slightly smaller to fit */
+.skill-item.active .skill-ball {
   width: 44px;
   height: 44px;
+}
+
+/* Skill logos */
+.skill-logo {
   position: absolute;
-  left: 14px;
-  top: 14px;
+  left: 7px;
+  top: 7px;
+  width: 25px;
+  height: 25px;
   opacity: 0;
-  transform: scale(0.7);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  pointer-events: none;
-  user-select: none;
+  transition: all 0.4s ease;
 }
 .skill-logo.visible {
   opacity: 1;
-  transform: scale(1);
 }
 
-/* Skill text */
+/* Skill Text */
 .skill-text {
-  color: white;
   font-weight: 600;
-  font-size: 1.2rem;
-  position: relative;
+  font-size: 1rem;
+  max-width: 90px;
+  opacity: 0;
   overflow: hidden;
   white-space: nowrap;
-  width: 0;
-  opacity: 0;
-  transition: width 0.7s ease, opacity 0.7s ease;
+  transition: opacity 0.5s ease, max-width 0.5s ease;
 }
 .skill-item.active .skill-text {
-  width: 100px;
   opacity: 1;
-  margin-left: 12px;
-  transition-delay: 0.6s;
+  max-width: 90px;
 }
 
-/* Colors for ball by skill */
+/* Colors Background Skill Ball */
 .skill-item[data-skill="html"] .skill-ball {
   background: linear-gradient(45deg, #ff6600, #ff9933);
 }
@@ -272,114 +135,34 @@ a {
   background: linear-gradient(45deg, #006699, #009966);
 }
 .skill-item[data-skill="github"] .skill-ball {
-  background: #eee;
+  background: #f2f2f2;
 }
 
-/* Hobby grid */
-.hobbies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.hobby-card {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
-}
-.hobby-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-.hobby-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 12px auto;
-  background: linear-gradient(135deg, #4a90e2, #7ab8f5);
-  border-radius: 50%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 15px 30px rgba(74, 144, 226, 0.3);
-}
-.hobby-card h3 {
-  color: white;
-  margin-bottom: 8px;
-  font-weight: 700;
-  font-size: 1.3rem;
-}
-.hobby-card p {
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-}
-
-/* Social Links */
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-.social-link {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 20px 30px;
-  color: white;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 0 15px transparent;
-  transition: box-shadow 0.25s ease;
-  user-select: none;
-  cursor: pointer;
-}
-.social-link i {
-  font-size: 1.6rem;
-}
-.social-link:hover {
-  box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
-}
-.whatsapp:hover {
-  color: #25d366;
-}
-.instagram:hover {
-  color: #e4405f;
-}
-.telegram:hover {
-  color: #0088cc;
-}
-.email:hover {
-  color: #ea4335;
-}
-
-/* Background Canvas */
-.background canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-/* Animations for plane and smoke handled by JS */
-
-/* Responsive */
+/* Responsive Adjustments for Mobile */
 @media (max-width: 768px) {
-  .nav-menu {
-    gap: 1rem;
-    font-size: 0.9rem;
+  .hero-title {
+    font-size: 2rem;
   }
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
-  .hobbies-grid {
-    grid-template-columns: 1fr;
+  .skill-item {
+    justify-content: flex-start;
+    padding: 14px 12px;
   }
-  .hero-title {
-    font-size: 2rem;
+  .skill-text {
+    max-width: 70px;
+    font-size: 0.9rem;
+  }
+  .skill-item.active .skill-ball {
+    width: 38px;
+    height: 38px;
+  }
+  .skill-logo {
+    width: 20px !important;
+    height: 20px !important;
+    left: 5px !important;
+    top: 5px !important;
   }
 }
