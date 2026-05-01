@@ -1,4 +1,3 @@
-/* RESET & GLOBAL */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-/* BACKGROUNDS */
 .network-bg {
     position: fixed;
     top: 0;
@@ -44,7 +42,7 @@ body {
     50% { transform: translateY(-20px) scale(1.2); }
 }
 
-/* NAVBAR */
+/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -65,14 +63,45 @@ body {
     padding: 0 2rem;
 }
 
-.nav-logo { font-size: 1.5rem; color: #4A90E2; }
-.nav-menu { display: flex; list-style: none; gap: 2rem; }
-.nav-link { color: white; text-decoration: none; font-weight: 500; position: relative; transition: color 0.3s ease; }
-.nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #4A90E2, #7AB8F5); transition: width 0.3s ease; }
-.nav-link:hover::after { width: 100%; }
-.nav-link:hover { color: #4A90E2; }
+.nav-logo {
+    font-size: 1.5rem;
+    color: #4A90E2;
+}
 
-/* HERO */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4A90E2, #7AB8F5);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #4A90E2;
+}
+
+/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -94,8 +123,16 @@ body {
     transition: all 0.5s ease;
 }
 
-.profile-pic:hover { transform: scale(1.05) rotate(5deg); box-shadow: 0 30px 60px rgba(74, 144, 226, 0.4); }
-.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+.profile-pic:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 30px 60px rgba(74, 144, 226, 0.4);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .hero-title {
     font-size: 3rem;
@@ -106,132 +143,296 @@ body {
     font-weight: 700;
 }
 
-.hero-subtitle { font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; }
-.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-primary, .btn-secondary { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; }
-.btn-primary { background: linear-gradient(135deg, #4A90E2, #7AB8F5); color: white; }
-.btn-secondary { background: transparent; color: white; border-color: rgba(255, 255, 255, 0.3); }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4); }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: #4A90E2; }
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
 
-/* SECTIONS */
-.section { padding: 100px 0; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 4rem; background: linear-gradient(135deg, #4A90E2, #7AB8F5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; }
-.section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: linear-gradient(90deg, #4A90E2, #7AB8F5); border-radius: 2px; }
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-/* SKILLS */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; }
-.skill-item { text-align: center; padding: 2rem 1rem; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
-.skill-item:hover { transform: translateY(-10px); background: rgba(74, 144, 226, 0.1); border-color: #4A90E2; }
-.skill-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
-.html { color: #E34F26; } .css { color: #264DE4; } .js { color: #F7DF1E; } .python { color: #3776AB; } .cpp { color: #00599C; } .github { color: #ffffff; }
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
 
-/* HOBBIES */
-.hobbies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.hobby-item { text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
-/* --- Base Hobby Icon (Oval Putih) --- */
+.btn-primary {
+    background: linear-gradient(135deg, #4A90E2, #7AB8F5);
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #4A90E2;
+}
+
+/* Sections */
+.section {
+    padding: 100px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, #4A90E2, #7AB8F5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4A90E2, #7AB8F5);
+    border-radius: 2px;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-item {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-item:hover {
+    transform: translateY(-10px);
+    background: rgba(74, 144, 226, 0.1);
+    border-color: #4A90E2;
+    box-shadow: 0 20px 40px rgba(74, 144, 226, 0.2);
+}
+
+.skill-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.html { color: #E34F26; }
+.css { color: #264DE4; }
+.js { color: #F7DF1E; }
+.python { color: #3776AB; }
+.cpp { color: #00599C; }
+.github { color: #ffffff; }
+
+/* Hobbies */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.hobby-item {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hobby-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .hobby-icon {
     width: 100px;
     height: 100px;
     margin: 0 auto 1.5rem;
-    background: #ffffff; /* Latar belakang putih */
-    border-radius: 50px;
+    background: linear-gradient(135deg, #4A90E2, #7AB8F5);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    color: #4A90E2;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    /* Animasi Oval Mutar */
-    animation: rotateOval 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-/* --- Animasi Gaming (Gamepad muncul setelah mutar) --- */
-.icon-gaming i {
     font-size: 2.5rem;
-    opacity: 0;
-    transform: scale(0.5);
-    animation: iconPop 0.5s 1s forwards; /* Muncul setelah 1 detik */
+    color: white;
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.3);
 }
 
-/* --- Animasi WiFi (Lengkungan Bertahap) --- */
-.icon-wifi {
+.hobby-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+.social-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    min-width: 120px;
 }
 
-.icon-wifi .dot {
-    width: 8px;
-    height: 8px;
-    background: #4A90E2;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 25%;
+.social-link i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-link:hover {
+    transform: translateY(-10px);
+    background: rgba(74, 144, 226, 0.2);
+    border-color: #4A90E2;
+}
+
+.whatsapp:hover { border-color: #25D366; }
+.instagram:hover { border-color: #E4405F; }
+.telegram:hover { border-color: #0088CC; }
+.email:hover { border-color: #EA4335; }
+
+/* Animations */
+.fade-in {
     opacity: 0;
-    animation: wifiShow 0.3s 0.8s forwards;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
 }
 
-.icon-wifi .arc {
-    position: absolute;
-    border: 3px solid transparent;
-    border-top-color: #4A90E2;
-    border-radius: 50%;
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-up {
     opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
 }
 
-.arc-1 { width: 30px; height: 30px; bottom: 30%; animation: wifiShow 0.4s 1.1s forwards; }
-.arc-2 { width: 50px; height: 50px; bottom: 35%; animation: wifiShow 0.4s 1.4s forwards; }
-.arc-3 { width: 70px; height: 70px; bottom: 40%; animation: wifiShow 0.4s 1.7s forwards; }
+.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-/* --- Animasi Music --- */
-.icon-music i {
-    font-size: 2.5rem;
+.slide-down {
     opacity: 0;
-    animation: iconPop 0.6s 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transform: translateY(-50px);
+    transition: all 0.6s ease;
 }
 
-/* --- KEYFRAMES --- */
-@keyframes rotateOval {
-    0% { transform: rotate(0deg) scale(0); opacity: 0; }
-    100% { transform: rotate(360deg) scale(1); opacity: 1; }
+.slide-down.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-@keyframes iconPop {
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes wifiShow {
-    0% { opacity: 0; transform: translateY(5px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Efek Hover tambahan agar tetap interaktif */
-.hobby-item:hover .hobby-icon {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
-    transition: 0.3s;
-}
-
-/* JKT48 EASTER EGG */
-.lily-link { color: #4A90E2; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
-.lily-link:hover { color: #ff0000; text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); }
-#hobbies .hobby-item:nth-child(3):hover { border-color: #ff0000; box-shadow: 0 0 25px rgba(255, 0, 0, 0.4); }
-
-/* CONTACT */
-.social-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-.social-link { display: flex; flex-direction: column; align-items: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-decoration: none; color: white; transition: all 0.3s ease; min-width: 120px; }
-.social-link:hover { transform: translateY(-10px); background: rgba(74, 144, 226, 0.2); }
-
-/* ANIMATIONS */
-.fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-
-/* RESPONSIVE */
+/* Responsive */
 @media (max-width: 768px) {
-    .hero-title { font-size: 2rem; }
-    .nav-menu { gap: 1rem; }
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .social-link {
+        min-width: 100px;
+        padding: 1rem;
+
+        /* --- Easter Egg JKT48 Section --- */
+.lily-link {
+    color: #4A90E2; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
 }
+
+.lily-link:hover {
+    color: #ff0000; 
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.lily-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #ff0000;
+    transition: width 0.3s ease;
+}
+
+.lily-link:hover::after {
+    width: 100%;
+}
+
+/* Merubah kartu hobi music jadi merah saat di hover */
+#hobbies .hobby-item:nth-child(3):hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
+    }
