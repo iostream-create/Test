@@ -1,1 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dimas Aksa Oktapian - WebDev & Network Engineer</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background with Plane Animation -->
+  <div class="background">
+    <canvas id="planeCanvas"></canvas>
+  </div>
 
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo"><i class="fas fa-code"></i> &nbsp;Dimas</div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero section">
+    <div class="container hero-content">
+      <div class="profile-pic">
+        <img
+          src="Screenshot_20260430-205318.jpg"
+          alt="Dimas Aksa Oktapian"
+          loading="lazy"
+        />
+      </div>
+      <h1 class="hero-title">WebDev & Network Engineer</h1>
+      <p class="hero-subtitle">Dimas Aksa Oktapian</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Hubungi Saya</a>
+        <a href="#skills" class="btn-secondary">Lihat Skills</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p>Pria ambisius dengan sejuta mimpi, dan seribu skills.</p>
+      <p>
+        20+ Publish Web project🔥, ∞Infinity Cup Coffee☕,
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-item" data-skill="html">
+          <div class="skill-ball"></div>
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+            alt="HTML Logo"
+            draggable="false"
+          />
+          <span class="skill-text">HTML</span>
+        </div>
+        <div class="skill-item" data-skill="css">
+          <div class="skill-ball"></div>
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+            alt="CSS Logo"
+            draggable="false"
+          />
+          <span class="skill-text">CSS</span>
+        </div>
+        <div class="skill-item" data-skill="js">
+          <div class="skill-ball"></div>
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            alt="JavaScript Logo"
+            draggable="false"
+          />
+          <span class="skill-text">JavaScript</span>
+        </div>
+        <div class="skill-item" data-skill="python">
+          <div class="skill-ball"></div>
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            alt="Python Logo"
+            draggable="false"
+          />
+          <span class="skill-text">Python</span>
+        </div>
+        <div class="skill-item" data-skill="cpp">
+          <div class="skill-ball"></div>
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+            alt="C++ Logo"
+            draggable="false"
+          />
+          <span class="skill-text">C++</span>
+        </div>
+        <div class="skill-item" data-skill="github">
+          <div class="skill-ball"></div>
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+            alt="GitHub Logo"
+            draggable="false"
+          />
+          <span class="skill-text">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobbies Section -->
+  <section id="hobbies" class="section">
+    <div class="container">
+      <h2 class="section-title">Hobbies</h2>
+      <div class="hobbies-grid">
+        <div class="hobby-card">
+          <div class="hobby-icon"><i class="fas fa-gamepad"></i></div>
+          <h3>Gaming</h3>
+          <p>Playing Game "Garena Delta Force"</p>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-icon"><i class="fas fa-wifi"></i></div>
+          <h3>Networking</h3>
+          <p>WebDev & Konfigurasi perangkat jaringan</p>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-icon"><i class="fas fa-music"></i></div>
+          <h3>Music</h3>
+          <p>Fans JKT48 -My oshi "Hillary Abigail Mantiri/LILY"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Connect With Me</h2>
+      <div class="social-links">
+        <a
+          href="https://wa.me/6285122458298"
+          target="_blank"
+          rel="noopener"
+          class="social-link whatsapp"
+          ><i class="fab fa-whatsapp"></i> WhatsApp</a
+        >
+        <a
+          href="https://instagram.com/aska.ra50"
+          target="_blank"
+          rel="noopener"
+          class="social-link instagram"
+          ><i class="fab fa-instagram"></i> Instagram</a
+        >
+        <a
+          href="https://t.me/Tehpucuts"
+          target="_blank"
+          rel="noopener"
+          class="social-link telegram"
+          ><i class="fab fa-telegram"></i> Telegram</a
+        >
+        <a
+          href="mailto:iostream911@gmail.com"
+          target="_blank"
+          rel="noopener"
+          class="social-link email"
+          ><i class="fas fa-envelope"></i> Email</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+            </html>
