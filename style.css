@@ -146,53 +146,6 @@ body {
 .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* WIFI ANIMATION (TARUH DI LUAR @MEDIA) */
-.wifi-container {
-    position: fixed;
-    bottom: -50px;
-    right: -50px;
-    width: 300px;
-    height: 300px;
-    z-index: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-}
-
-.wifi-circle {
-    position: absolute;
-    border: 2px solid rgba(74, 144, 226, 0.8);
-    border-radius: 50%;
-    opacity: 0;
-    animation: wifi-pulse 4s infinite;
-}
-
-.wifi-circle:nth-child(2) { animation-delay: 1.3s; }
-.wifi-circle:nth-child(3) { animation-delay: 2.6s; }
-
-@keyframes wifi-pulse {
-    0% { width: 0; height: 0; opacity: 0; }
-    50% { opacity: 0.6; }
-    100% { width: 1500px; height: 1500px; opacity: 0; transform: translate(-600px, -600px); }
-}
-
-.connect-text {
-    position: absolute;
-    bottom: 100px;
-    right: 100px;
-    font-weight: bold;
-    color: #4A90E2;
-    opacity: 0;
-    text-shadow: 0 0 15px rgba(74, 144, 226, 0.9);
-    animation: fade-connect 4s infinite;
-}
-
-@keyframes fade-connect {
-    0%, 80% { opacity: 0; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
-}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
