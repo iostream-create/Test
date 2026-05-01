@@ -44,14 +44,21 @@ body {
 
 /* Navbar */
 .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(15, 15, 35, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: all 0.3s ease;
+
+position: relative;
+
+padding: 15px 20px;
+
+background: rgba(255, 255, 255, 0.05);
+
+border-radius: 60px;
+
+backdrop-filter: blur (15px);
+
+box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+
+border: 0.5px solid #ccc;
+
 }
 
 .nav-container {
