@@ -107,12 +107,28 @@ body {
 }
 
 .hero-subtitle { font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; }
-.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-primary, .btn-secondary { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; }
-.btn-primary { background: linear-gradient(135deg, #4A90E2, #7AB8F5); color: white; }
-.btn-secondary { background: transparent; color: white; border-color: rgba(255, 255, 255, 0.3); }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4); }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: #4A90E2; }
+
+/* INI BAGIAN YANG DIPERBAIKI */
+.hero-buttons { 
+    display: flex; 
+    gap: 1.5rem;          /* Jarak antar tombol */
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: nowrap;    /* Mencegah tombol menumpuk ke bawah */
+}
+
+.btn-primary, .btn-secondary { 
+    padding: 12px 30px; 
+    border-radius: 50px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: all 0.3s ease; 
+    border: 2px solid transparent; 
+    white-space: nowrap;  /* Mencegah teks tombol terpotong jadi 2 baris */
+    min-width: 160px;     /* Menyamakan lebar tombol agar rapi */
+}
+/* LANJUTKAN KODE WARNA TOMBOL SEPERTI SEBELUMNYA... */
+
 
 /* SECTIONS */
 .section { padding: 100px 0; }
