@@ -148,3 +148,27 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// --- JKT48 Easter Egg Logic ---
+const lilyLink = document.querySelector('.lily-link');
+
+if (lilyLink) {
+    lilyLink.addEventListener('click', (e) => {
+        // Notifikasi keren di console browser
+        console.log("%c Menuju TikTok Lily JKT48... Full Support! ❤️", "color: red; font-size: 20px; font-weight: bold;");
+        
+        // Opsional: Alert sederhana
+        // alert("Otw ke TikTok Lily! Jangan lupa follow ya! ❤️");
+    });
+}
+
+// Perbaikan Observer untuk memastikan animasi slide muncul dengan benar
+const refreshObserver = () => {
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach(el => {
+        observer.observe(el);
+    });
+};
+
+// Panggil fungsi jika ada konten baru yang dimuat
+document.addEventListener('DOMContentLoaded', refreshObserver);
