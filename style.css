@@ -401,6 +401,74 @@ body {
       .hobby-item:nth-child(3):hover {
     border-color: #ff0000; /* Warna merah khas JKT48 */
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    }
+/* --- Easter Egg JKT48 Section --- */
+.lily-link {
+    color: #4A90E2; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
 }
+
+.lily-link:hover {
+    color: #ff0000; 
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.lily-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #ff0000;
+    transition: width 0.3s ease;
+}
+
+.lily-link:hover::after {
+    width: 100%;
+}
+
+/* --- Easter Egg JKT48 Section --- */
+.lily-link {
+    color: #4A90E2; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.lily-link:hover {
+    color: #ff0000; 
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.lily-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #ff0000;
+    transition: width 0.3s ease;
+}
+
+.lily-link:hover::after {
+    width: 100%;
+}
+
+/* Merubah kartu hobi music jadi merah saat di hover */
+#hobbies .hobby-item:nth-child(3):hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
 
                            }
