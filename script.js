@@ -1,144 +1,162 @@
-// MENU Toggle
-const menuBtn = document.getElementById('menuBtn');
-const menuDropdown = document.getElementById('menuDropdown');
-const menuLinks = document.querySelectorAll('.menu-link');
-
-// Toggle menu
-menuBtn.addEventListener('click', () => {
-    menuDropdown.classList.toggle('active');
-});
-
-// Close menu when clicking link
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menuDropdown.classList.remove('active');
-        // Smooth scroll to section ONLY when menu clicked
-        const targetId = link.dataset.section;
-        const targetSection = document.getElementById(targetSection);
-        if (targetSection) {
-            targetSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+// Smooth scrolling untuk navbar links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
 
-// Close menu on outside click
-document.addEventListener('click', (e) => {
-    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
-        menuDropdown.classList.remove('active');
-    }
-});
-
-// NORMAL SCROLL - NO AUTO NAVIGATION
-// User has FULL scroll control - NO interference
-
-// Rocket every 10s
-setInterval(() => {
-    document.querySelector('.rocket').classList.add('show');
-    setTimeout(() => {
-        document.querySelector('.rocket').classList.remove('show');
-    }, 4000);
-}, 10000);
-
-// Projects modal
-const projectCards = document.querySelectorAll('.project-card');
-const modal = document.getElementById('projectModal');
-const modalImage = document.getElementById('modalImage');
-const modalTitle = document.getElementById('modalTitle');
-const modalLink = document.getElementById('modalLink');
-const modalClose = document.querySelector('.modal-close');
-
-const projectData = [
-    { img: 'https://via.placeholder.com/600x350/1e40af/ffffff?text=Project+1', title: 'Portfolio Website', url: 'https://github.com/yourusername/project1' },
-    { img: 'https://via.placeholder.com/600x350/3730a3/ffffff?text=Project+2', title: 'E-Commerce App', url: 'https://github.com/yourusername/project2' },
-    { img: 'https://via.placeholder.com/600x350/581c87/ffffff?text=Project+3', title: 'Network Dashboard', url: 'https://github.com/yourusername/project3' }
-];
-
-projectCards.forEach((card, index) => {
-    card.addEventListener('click', () => {
-        modalImage.src = projectData[index].img;
-        modalTitle.textContent = projectData[index].title;
-        modalLink.href = projectData[index].url;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-});
-
-function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
-
-// Fade in animations on scroll
+// Scroll animations
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
-const fadeObserver = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+            entry.target.classList.add('visible');
         }
     });
 }, observerOptions);
 
-// Observe all sections and biodata items
-document.querySelectorAll('.section, .biodata-item').forEach(el => {
-    fadeObserver.observe(el);
+// Observe semua sections
+document.querySelectorAll('.section').forEach(section => {
+    observer.observe(section);
 });
 
-// Winbox icon custom hover
-document.querySelector('.skill-item[data-skill="winbox"]').addEventListener('mouseenter', function() {
-    this.style.animation = 'spin 1s ease-in-out';
+// Skills hover effect
+document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.animation = 'none';
+        card.style.transform = 'translateY(-10px) scale(1.05)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+    });
 });
 
-document.querySelector('.skill-item[data-skill="winbox"]').addEventListener('mouseleave', function() {
-    this.style.animation = 'none';
+// Projects interactive functionality
+const projectCards = document.querySelectorAll('.project-card');
+const projectsContainer = document.querySelector('.projects-container');
+
+projectCards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+        // Remove active class from all cards
+        projectCards.forEach(c => {
+            c.classList.remove('active', 'enlarged');
+        });
+        
+        // Add active to clicked card
+        card.classList.add('active', 'enlarged');
+        
+        // Show preview text
+        const previewText = card.querySelector('.preview-text');
+        if (previewText) {
+            setTimeout(() => {
+                previewText.style.opacity = '1';
+            }, 300);
+        }
+        
+        // Animate other cards
+        projectCards.forEach((otherCard, otherIndex) => {
+            if (otherCard !== card) {
+                if (otherIndex < index) {
+                    // Slide left
+                    otherCard.style.transform = 'translateX(-100px) scale(0.8)';
+                } else {
+                    // Slide right
+                    otherCard.style.transform = 'translateX(100px) scale(0.8)';
+                }
+            }
+        });
+    });
+    
+    // Preview text click - redirect to GitHub
+    const previewText = card.querySelector('.preview-text');
+    if (previewText) {
+        previewText.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Ganti dengan link GitHub project Anda
+            window.open('https://github.com/yourusername/yourproject', '_blank');
+        });
+    }
 });
 
-// Add spin animation
+// Rocket animation every 10 seconds
+setInterval(() => {
+    const rocket = document.querySelector('.rocket');
+    rocket.style.display = 'block';
+    setTimeout(() => {
+        rocket.style.display = 'none';
+    }, 10000);
+}, 10000);
+
+// Dynamic scroll direction animation
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > lastScrollY) {
+        // Scroll down - slide from top
+        document.querySelectorAll('.section').forEach(section => {
+            if (section.getBoundingClientRect().top < window.innerHeight) {
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    } else {
+        // Scroll up - slide from bottom
+        document.querySelectorAll('.section').forEach(section => {
+            if (section.getBoundingClientRect().top < window.innerHeight) {
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    lastScrollY = currentScrollY;
+});
+
+// Hobbies hover rotation
+document.querySelectorAll('.hobby-card').forEach(card => {
+    const icon = card.querySelector('.hobby-icon');
+    card.addEventListener('mouseenter', () => {
+        icon.style.transform = 'scale(1.1) rotate(360deg)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        icon.style.transform = 'scale(1) rotate(0deg)';
+    });
+});
+
+// Contact cards hover scale
+document.querySelectorAll('.contact-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.animation = 'pulse 0.6s infinite';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.animation = 'none';
+    });
+});
+
+// Add pulse animation to CSS (tambahkan di style.css jika ingin)
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes spin {
-        0% { transform: translateY(-25px) scale(1.08) rotate(0deg); }
-        50% { transform: translateY(-25px) scale(1.08) rotate(180deg); }
-        100% { transform: translateY(-25px) scale(1.08) rotate(360deg); }
+    @keyframes pulse {
+        0% { transform: translateY(-15px) scale(1.1); }
+        50% { transform: translateY(-20px) scale(1.15); }
+        100% { transform: translateY(-15px) scale(1.1); }
     }
 `;
 document.head.appendChild(style);
 
-// Smooth hover effects
-document.querySelectorAll('.skill-item, .hobby-card, .contact-item').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.style.willChange = 'transform';
-    });
-    item.addEventListener('mouseleave', () => {
-        item.style.willChange = 'auto';
-    });
+// Initialize first project card
+document.addEventListener('DOMContentLoaded', () => {
+    projectCards[0].classList.add('active');
+    projectCards[0].style.opacity = '1';
+    projectCards[0].style.transform = 'translateX(0)';
 });
-
-// Performance: Preload critical assets
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    
-    // Stagger project cards
-    projectCards.forEach((card, index) => {
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-        }, index * 150);
-    });
-});
-
-// Mobile optimizations
-if ('ontouchstart' in window) {
-    document.body.classList.add('touch-device');
-    }
