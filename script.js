@@ -1,166 +1,153 @@
-// Navbar Navigation
+// Navigation
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
+const mainContent = document.querySelector('.main-content');
+
 let currentSection = 'home';
 
+// Smooth section switching
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = link.dataset.section;
         
-        // Update active nav link
+        // Update active nav
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
         
-        // Show target section
+        // Switch sections
         sections.forEach(section => {
             section.classList.remove('active');
-            if (section.id === targetId) {
+            if (section.id === targetSection) {
+                section.scrollIntoView({ behavior: 'smooth' });
                 section.classList.add('active');
-                currentSection = targetId;
+                currentSection = targetSection;
             }
         });
+        
+        // Scroll to top of section
+        setTimeout(() => {
+            window.scrollTo({
+                top: section.offsetTop - 200,
+                behavior: 'smooth'
+            });
+        }, 100);
     });
 });
 
-// Scroll-based animations
-let lastScrollY = window.scrollY;
-let scrollDirection = 'down';
-
-window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > lastScrollY) {
-        scrollDirection = 'down';
-    } else {
-        scrollDirection = 'up';
-    }
-    lastScrollY = currentScrollY;
-});
-
-// Rocket Animation
+// Rocket animation every 10 seconds
 setInterval(() => {
     const rocket = document.querySelector('.rocket');
-    rocket.style.opacity = '1';
     rocket.classList.add('show');
     
     setTimeout(() => {
         rocket.classList.remove('show');
-        rocket.style.opacity = '0';
-    }, 3000);
+    }, 4000);
 }, 10000);
-
-// Skills hover effects
-document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.animation = 'none';
-        card.style.transform = 'translateY(-15px) scale(1.05)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-    });
-});
 
 // Projects functionality
 const projectCards = document.querySelectorAll('.project-card');
-const projectPreview = document.getElementById('projectPreview');
-const previewTitle = document.getElementById('previewTitle');
-const previewLink = document.querySelector('.preview-link');
-const closePreview = document.querySelector('.close-preview');
+const modal = document.getElementById('projectModal');
+const modalImage = document.getElementById('modalImage');
+const modalTitle = document.getElementById('modalTitle');
+const modalLink = document.getElementById('modalLink');
+const modalClose = document.querySelector('.modal-close');
 
-let projectIndex = 0;
 const projectData = [
-    { title: 'Project 1 - Portfolio Website', url: 'https://github.com/yourusername/project1' },
-    { title: 'Project 2 - E-Commerce App', url: 'https://github.com/yourusername/project2' },
-    { title: 'Project 3 - Network Dashboard', url: 'https://github.com/yourusername/project3' }
+    { img: 'https://via.placeholder.com/500x300/1e40af/ffffff?text=Project+1', title: 'Portfolio Website', url: 'https://github.com/yourusername/project1' },
+    { img: 'https://via.placeholder.com/500x300/3730a3/ffffff?text=Project+2', title: 'E-Commerce App', url: 'https://github.com/yourusername/project2' },
+    { img: 'https://via.placeholder.com/500x300/581c87/ffffff?text=Project+3', title: 'Network Dashboard', url: 'https://github.com/yourusername/project3' }
 ];
 
 // Show first project
-projectCards[0].classList.remove('hidden');
-projectCards[0].classList.add('active');
+setTimeout(() => {
+    projectCards[0].classList.add('active');
+}, 500);
 
 projectCards.forEach((card, index) => {
     card.addEventListener('click', () => {
-        // Show other projects with animation
-        if (index === 0) {
-            projectCards[1].classList.remove('hidden');
-            projectCards[2].classList.remove('hidden');
-            projectCards[1].style.transform = 'translateX(-400px)';
-            projectCards[2].style.transform = 'translateX(400px)';
-            
-            setTimeout(() => {
-                projectCards[1].style.transform = 'translateX(0)';
-                projectCards[2].style.transform = 'translateX(0)';
-            }, 100);
-        }
-        
-        // Show preview
-        previewTitle.textContent = projectData[index].title;
-        previewLink.href = projectData[index].url;
-        projectPreview.classList.add('active');
+        modalImage.src = projectData[index].img;
+        modalTitle.textContent = projectData[index].title;
+        modalLink.href = projectData[index].url;
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
 });
 
-closePreview.addEventListener('click', () => {
-    projectPreview.classList.remove('active');
+// Close modal
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+function closeModal() {
+    modal.classList.remove('active');
     document.body.style.overflow = 'auto';
-});
+}
 
-projectPreview.addEventListener('click', (e) => {
-    if (e.target === projectPreview) {
-        projectPreview.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Biodata animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
+// Biodata animation
 const biodataObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('slide-in');
+            setTimeout(() => {
+                entry.target.classList.add('animate');
+            }, index * 200);
         }
     });
-}, observerOptions);
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.biodata-card').forEach(card => {
-    biodataObserver.observe(card);
+document.querySelectorAll('.biodata-item').forEach(item => {
+    biodataObserver.observe(item);
 });
 
-// Contact hover effects
-document.querySelectorAll('.contact-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.animation = 'pulse 0.6s infinite';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.animation = 'none';
+// Smooth scrolling for sections
+document.querySelectorAll('.section').forEach(section => {
+    section.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+    }, { passive: false });
+});
+
+// Preload and performance
+window.addEventListener('load', () => {
+    document.body.style.opacity = '1';
+    // Animate first project cards
+    projectCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1) translateY(0)';
+        }, index * 200);
     });
 });
 
-// Add pulse animation to CSS via JS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7); }
-        70% { box-shadow: 0 0 0 20px rgba(0, 212, 255, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
-    }
-`;
-document.head.appendChild(style);
+// Touch/swipe support for mobile
+let touchStartY = 0;
+let touchEndY = 0;
 
-// Smooth scrolling for mobile
-document.querySelector('.nav-container').addEventListener('touchstart', (e) => {
-    e.stopPropagation();
+mainContent.addEventListener('touchstart', (e) => {
+    touchStartY = e.changedTouches[0].screenY;
 }, { passive: true });
 
-// Preload images
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
+mainContent.addEventListener('touchend', (e) => {
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndY < touchStartY - swipeThreshold) {
+        // Swipe up - next section
+        const currentIndex = Array.from(sections).indexOf(document.querySelector('.section.active'));
+        if (currentIndex < sections.length - 1) {
+            const nextLink = document.querySelector(`[data-section="${sections[currentIndex + 1].id}"]`);
+            nextLink.click();
+        }
+    }
+    if (touchEndY > touchStartY + swipeThreshold) {
+        // Swipe down - prev section
+        const currentIndex = Array.from(sections).indexOf(document.querySelector('.section.active'));
+        if (currentIndex > 0) {
+            const prevLink = document.querySelector(`[data-section="${sections[currentIndex - 1].id}"]`);
+            prevLink.click();
+        }
+    }
+}
