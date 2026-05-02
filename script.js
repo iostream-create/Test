@@ -1,31 +1,8 @@
 let selectedPaket = '';
-let map, marker;
 const waNumber = '085122458298';
 
-// Initialize map
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -6.2088, lng: 106.8456 }, // Jakarta default
-        zoom: 15,
-        mapTypeId: 'roadmap'
-    });
-
-    map.addListener('click', function(event) {
-        const lat = event.latLng.lat();
-        const lng = event.latLng.lng();
-        document.getElementById('shareloc').value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-        
-        if (marker) marker.setMap(null);
-        marker = new google.maps.Marker({
-            position: event.latLng,
-            map: map,
-            title: 'Lokasi Rumah'
-        });
-    });
-}
-
-// Paket selection
 document.addEventListener('DOMContentLoaded', function() {
+    // Paket selection
     document.querySelectorAll('.paket-card').forEach(card => {
         card.addEventListener('click', function() {
             document.querySelectorAll('.paket-card').forEach(c => c.classList.remove('selected'));
@@ -34,6 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('paketTerpilih').value = selectedPaket;
             setTimeout(() => showFormSection(), 500);
         });
+    });
+
+    // Geolocation button
+    document.getElementById('getLocationBtn').addEventListener('click', getCurrentLocation);
+
+    // Make location input editable on click
+    document.getElementById('shareloc').addEventListener('click', function() {
+        this.removeAttribute('readonly');
+        this.focus();
     });
 
     // File preview
@@ -64,8 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
             foto: document.getElementById('fotoRumah').files[0]?.name || 'Tidak ada foto'
         };
 
-        if (!formData.shareloc) {
-            alert('Silakan pilih lokasi di peta terlebih dahulu!');
+        // Validasi lokasi
+        if (!formData.shareloc.trim()) {
+            alert('❌ Silakan pilih lokasi dengan tombol "Dapatkan Lokasi" atau ketik manual!');
+            document.getElementById('shareloc').focus();
             return;
         }
 
@@ -77,18 +65,77 @@ document.addEventListener('DOMContentLoaded', function() {
             `• *No HP 2* : ${formData.hp2}\n` +
             `• *Shareloc* : ${formData.shareloc}\n` +
             `• *Foto Rumah* : ${formData.foto}\n\n` +
-            `*Terima kasih! Silakan follow up 📞*`;
+            `*Terima kasih! Silakan follow up 📞*\n` +
+            `_Data dikirim pada: ${new Date().toLocaleString('id-ID')}_`;
 
         const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
         
         document.getElementById('loading').style.display = 'block';
+        document.getElementById('registrationForm').style.display = 'none';
         
         setTimeout(() => {
             document.getElementById('loading').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'block';
             window.open(whatsappURL, '_blank');
         }, 1500);
     });
 });
+
+function getCurrentLocation() {
+    const btn = document.getElementById('getLocationBtn');
+    const input = document.getElementById('shareloc');
+    
+    if (!navigator.geolocation) {
+        alert('❌ Browser tidak mendukung geolocation');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mendapatkan...';
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            const lat = position.coords.latitude.toFixed(6);
+            const lng = position.coords.longitude.toFixed(6);
+            input.value = `${lat}, ${lng}`;
+            input.setAttribute('readonly', true);
+            
+            btn.innerHTML = '<i class="fas fa-check"></i> Berhasil!';
+            btn.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-location-arrow"></i> Dapatkan Lokasi';
+                btn.disabled = false;
+                btn.style.background = 'linear-gradient(45deg, #00c851, #007e33)';
+            }, 3000);
+        },
+        function(error) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-location-arrow"></i> Dapatkan Lokasi';
+            
+            let errorMsg = 'Gagal mendapatkan lokasi: ';
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMsg += 'Izin lokasi ditolak. *Izinkan akses lokasi di browser*';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMsg += 'Informasi lokasi tidak tersedia';
+                    break;
+                case error.TIMEOUT:
+                    errorMsg += 'Timeout. Coba lagi atau ketik manual';
+                    break;
+                default:
+                    errorMsg += 'Error tidak diketahui';
+            }
+            alert('❌ ' + errorMsg + '\n\n*Ketik koordinat/alamat manual di kolom lokasi*');
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 60000
+        }
+    );
+}
 
 function showPaketSection() {
     document.getElementById('paketSection').style.display = 'grid';
@@ -98,4 +145,4 @@ function showPaketSection() {
 function showFormSection() {
     document.getElementById('paketSection').style.display = 'none';
     document.getElementById('formSection').classList.add('active');
-}
+            }
