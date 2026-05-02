@@ -1,8 +1,9 @@
 let selectedPaket = '';
-const waNumber = '6285122458298'; // ✅ BENAR - Format internasional (+62
+// 🔥 GANTI INI DENGAN NOMOR WA AKTIFMU (format 62xxxxxxxxxx)
+const waNumber = '6285122458298'; 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Paket selection
+    // 1. PAKET SELECTION
     document.querySelectorAll('.paket-card').forEach(card => {
         card.addEventListener('click', function() {
             document.querySelectorAll('.paket-card').forEach(c => c.classList.remove('selected'));
@@ -13,16 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Geolocation button
+    // 2. GEOLOCATION - GPS OPTIMIZED (CEPAT!)
     document.getElementById('getLocationBtn').addEventListener('click', getCurrentLocation);
 
-    // Make location input editable on click
+    // 3. IP GEOLOCATION - SUPER CEPAT!
+    document.getElementById('getIPLocationBtn').addEventListener('click', getIPLocation);
+
+    // 4. EDIT MANUAL LOKASI
     document.getElementById('shareloc').addEventListener('click', function() {
         this.removeAttribute('readonly');
         this.focus();
     });
 
-    // File preview
+    // 5. FOTO PREVIEW
     document.getElementById('fotoRumah').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Form submit
+    // 6. KIRIM WA - FINAL VERSION
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -46,153 +50,111 @@ document.addEventListener('DOMContentLoaded', function() {
             email: document.getElementById('email').value,
             hp1: document.getElementById('hp1').value,
             hp2: document.getElementById('hp2').value || '-',
-            shareloc: document.getElementById('shareloc').value,
+            shareloc: document.getElementById('shareloc').value.trim(),
             foto: document.getElementById('fotoRumah').files[0]?.name || 'Tidak ada foto'
         };
 
-        // Validasi lokasi
-        if (!formData.shareloc.trim()) {
-            alert('❌ Silakan pilih lokasi dengan tombol "Dapatkan Lokasi" atau ketik manual!');
-            document.getElementById('shareloc').focus();
-            return;
-        }
-
+        // VALIDASI
+        if (!formData.paket) return alert('❌ Pilih paket dulu!');
+        if (!formData.shareloc) return alert('❌ Pilih lokasi dulu!');
+        
         const message = `*📋 PENDAFTARAN INDIHOME BARU* 📋\n\n` +
-            `• *Paket Terpilih* : ${formData.paket}\n` +
-            `• *Nama Sesuai KTP* : ${formData.nama}\n` +
-            `• *Email* : ${formData.email}\n` +
-            `• *No HP 1* : ${formData.hp1}\n` +
-            `• *No HP 2* : ${formData.hp2}\n` +
-            `• *Shareloc* : ${formData.shareloc}\n` +
-            `• *Foto Rumah* : ${formData.foto}\n\n` +
-            `*Terima kasih! Silakan follow up 📞*\n` +
-            `_Data dikirim pada: ${new Date().toLocaleString('id-ID')}_`;
+            `🔴 *Paket* : ${formData.paket}\n` +
+            `👤 *Nama KTP* : ${formData.nama}\n` +
+            `📧 *Email* : ${formData.email}\n` +
+            `📱 *HP 1* : ${formData.hp1}\n` +
+            `📱 *HP 2* : ${formData.hp2}\n` +
+            `📍 *LOKASI* : ${formData.shareloc}\n` +
+            `🖼️ *Foto* : ${formData.foto}\n\n` +
+            `⏰ *Waktu* : ${new Date().toLocaleString('id-ID')}\n\n` +
+            `*Silakan follow up! 📞*`;
 
         const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
         
+        // LOADING
         document.getElementById('loading').style.display = 'block';
         document.getElementById('registrationForm').style.display = 'none';
         
+        // KIRIM
         setTimeout(() => {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('registrationForm').style.display = 'block';
             window.open(whatsappURL, '_blank');
+            alert('✅ Data terkirim ke WhatsApp!');
         }, 1500);
     });
 });
 
+// 🔥 GPS ULTRA CEPAT (Max 8 detik)
 function getCurrentLocation() {
     const btn = document.getElementById('getLocationBtn');
     const input = document.getElementById('shareloc');
     
     if (!navigator.geolocation) {
-        alert('❌ Browser tidak support GPS');
-        return;
+        return alert('❌ Browser tidak support GPS');
     }
 
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GPS...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-    // ⚡ OPTIMASI: Timeout 8 detik + low accuracy untuk cepat
     navigator.geolocation.getCurrentPosition(
-        function(position) {
-            // ✅ SUKSES - Format koordinat
+        position => {
             const lat = position.coords.latitude.toFixed(6);
             const lng = position.coords.longitude.toFixed(6);
             input.value = `${lat}, ${lng} ✅`;
             input.setAttribute('readonly', true);
-            
-            btn.innerHTML = '<i class="fas fa-check"></i> OK!';
-            btn.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-location-arrow"></i> GPS OK';
-                btn.disabled = false;
-            }, 2000);
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.style.background = '#28a745';
         },
-        function(error) {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-location-arrow"></i> GPS Manual';
-            
-            // 🚀 AUTO ISI KOORDINAT JAKARTA jika gagal
-            const fallbackLat = -6.2088;
-            const fallbackLng = 106.8456;
-            input.value = `${fallbackLat}, ${fallbackLng} (Jakarta) ✏️`;
-            
-            let errorMsg = '';
-            switch(error.code) {
-                case 1: // Permission denied
-                    errorMsg = 'GPS ditolak. Koordinat Jakarta diisi otomatis.';
-                    break;
-                case 2: // Position unavailable
-                    errorMsg = 'GPS tidak tersedia. Pakai koordinat Jakarta.';
-                    break;
-                case 3: // Timeout
-                    errorMsg = 'GPS lambat (timeout). Pakai koordinat Jakarta.';
-                    break;
-                default:
-                    errorMsg = 'GPS error. Koordinat Jakarta diisi otomatis.';
-            }
-            
-            // 💡 Fallback: Auto isi Jakarta + boleh edit manual
+        error => {
+            // FALLBACK JAKARTA
+            input.value = '-6.2088, 106.8456 (Jakarta)';
             input.removeAttribute('readonly');
-            console.log('GPS Error:', errorMsg);
-            alert(`⚠️ ${errorMsg}\n\n📍 Koordinat Jakarta: ${input.value}\n✏️ Klik kolom untuk edit manual`);
+            alert('⚠️ GPS gagal. Jakarta diisi otomatis.\nKlik kolom untuk edit.');
         },
         {
-            // ⚡ SETTING CEPAT & AKURAT
-            enableHighAccuracy: false,  // Low accuracy = CEPAT
-            timeout: 8000,             // 8 detik max
-            maximumAge: 30000          // Cache 30 detik
+            enableHighAccuracy: false,  // CEPAT!
+            timeout: 8000,             // 8 detik
+            maximumAge: 30000          // Cache 30s
         }
     );
+
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-location-arrow"></i>';
+        btn.style.background = '#00c851';
+    }, 3000);
 }
 
+// 🔥 IP LOCATION - 1 DETIK SAJA!
+async function getIPLocation() {
+    const btn = document.getElementById('getIPLocationBtn');
+    const input = document.getElementById('shareloc');
+    
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mendapatkan...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-            const lat = position.coords.latitude.toFixed(6);
-            const lng = position.coords.longitude.toFixed(6);
-            input.value = `${lat}, ${lng}`;
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        if (data.latitude) {
+            const lat = data.latitude.toFixed(6);
+            const lng = data.longitude.toFixed(6);
+            input.value = `${lat}, ${lng} (${data.city}) 🌐`;
             input.setAttribute('readonly', true);
-            
-            btn.innerHTML = '<i class="fas fa-check"></i> Berhasil!';
-            btn.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-location-arrow"></i> Dapatkan Lokasi';
-                btn.disabled = false;
-                btn.style.background = 'linear-gradient(45deg, #00c851, #007e33)';
-            }, 3000);
-        },
-        function(error) {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-location-arrow"></i> Dapatkan Lokasi';
-            
-            let errorMsg = 'Gagal mendapatkan lokasi: ';
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    errorMsg += 'Izin lokasi ditolak. *Izinkan akses lokasi di browser*';
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    errorMsg += 'Informasi lokasi tidak tersedia';
-                    break;
-                case error.TIMEOUT:
-                    errorMsg += 'Timeout. Coba lagi atau ketik manual';
-                    break;
-                default:
-                    errorMsg += 'Error tidak diketahui';
-            }
-            alert('❌ ' + errorMsg + '\n\n*Ketik koordinat/alamat manual di kolom lokasi*');
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 15000,
-            maximumAge: 60000
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.style.background = '#28a745';
         }
-    );
+    } catch (e) {
+        input.value = '-6.2088, 106.8456 (IP gagal - Jakarta)';
+    }
+
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-globe"></i>';
+        btn.style.background = '#17a2b8';
+    }, 2000);
 }
 
 function showPaketSection() {
@@ -203,4 +165,4 @@ function showPaketSection() {
 function showFormSection() {
     document.getElementById('paketSection').style.display = 'none';
     document.getElementById('formSection').classList.add('active');
-            }
+                          }
