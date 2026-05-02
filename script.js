@@ -1,5 +1,5 @@
 let selectedPaket = '';
-const waNumber = '6285122458298';
+const waNumber = '6285122458298'; // ✅ BENAR - Format internasional (+62
 
 document.addEventListener('DOMContentLoaded', function() {
     // Paket selection
