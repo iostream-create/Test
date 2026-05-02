@@ -1,5 +1,5 @@
 let selectedPaket = '';
-const waNumber = '085122458298';
+const waNumber = '6285122458298';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Paket selection
