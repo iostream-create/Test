@@ -5,194 +5,234 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebDev & Network Engineer</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Background Particles -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
-    <!-- Rocket Animation -->
-    <div class="rocket">
-        <div class="rocket-body">
+    <!-- Background -->
+    <div class="bg-particles"></div>
+    
+    <!-- Rocket -->
+    <div class="rocket-container">
+        <div class="rocket">
             <i class="fas fa-rocket"></i>
+            <div class="rocket-flame"></div>
         </div>
-        <div class="rocket-smoke"></div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <h1 class="nav-title">WebDev&Network Engineer</h1>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About Me</a></li>
-                <li><a href="#skills" class="nav-link">Skill</a></li>
-                <li><a href="#projects" class="nav-link">Project</a></li>
-                <li><a href="#hobbies" class="nav-link">Hobby</a></li>
-                <li><a href="#biodata" class="nav-link">Biodata</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
+    <!-- Header dengan Profile Fixed -->
+    <header class="header">
+        <div class="profile-container">
+            <div class="profile-image">
+                <img src="https://via.placeholder.com/200x200/1e3a8a/ffffff?text=Your+Photo" alt="Profile">
+            </div>
         </div>
-    </nav>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">WebDev&Network Engineer</h1>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-section="about">About Me</a></li>
+                    <li><a href="#skills" class="nav-link" data-section="skills">Skill</a></li>
+                    <li><a href="#projects" class="nav-link" data-section="projects">Project</a></li>
+                    <li><a href="#hobbies" class="nav-link" data-section="hobbies">Hobby</a></li>
+                    <li><a href="#biodata" class="nav-link" data-section="biodata">Biodata</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Profile Picture -->
-    <div class="profile-pic">
-        <img src="https://via.placeholder.com/300x300/00d4ff/ffffff?text=Profile" alt="Profile Picture">
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home -->
+        <section id="home" class="section active fade-in">
+            <div class="content-wrapper">
+                <h1 class="section-title">WebDev & Network Engineer</h1>
+                <p class="section-desc">Fullstack Developer & Network Specialist dengan passion membangun solusi digital inovatif</p>
+                <blockquote class="motivation">
+                    "Dream big, code harder, network smarter! 🚀"
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="content-wrapper">
+                <h2 class="about-text">Pria ambisius dengan sejuta skill dan 1000 mimpi 🔥</h2>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item" data-skill="html">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill-item" data-skill="css">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill-item" data-skill="js">
+                        <i class="fab fa-js-square"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-item" data-skill="python">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-item" data-skill="cpp">
+                        <i class="fab fa-cuttlefish"></i>
+                        <span>C++</span>
+                    </div>
+                    <div class="skill-item" data-skill="laravel">
+                        <i class="fab fa-laravel"></i>
+                        <span>Laravel</span>
+                    </div>
+                    <div class="skill-item" data-skill="mysql">
+                        <i class="fas fa-database"></i>
+                        <span>MySQL</span>
+                    </div>
+                    <div class="skill-item" data-skill="github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="skill-item" data-skill="winbox">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Winbox</span>
+                    </div>
+                    <div class="skill-item" data-skill="cisco">
+                        <i class="fab fa-cisco"></i>
+                        <span>Cisco PT</span>
+                    </div>
+                    <div class="skill-item" data-skill="vscode">
+                        <i class="fab fa-microsoft"></i>
+                        <span>VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-container">
+                    <div class="project-card active" data-index="0">
+                        <img src="https://via.placeholder.com/400x250/1e40af/ffffff?text=Project+1" alt="Project 1">
+                        <div class="project-overlay">
+                            <span class="project-title">Portfolio Website</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-index="1">
+                        <img src="https://via.placeholder.com/400x250/3730a3/ffffff?text=Project+2" alt="Project 2">
+                        <div class="project-overlay">
+                            <span class="project-title">E-Commerce App</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-index="2">
+                        <img src="https://via.placeholder.com/400x250/581c87/ffffff?text=Project+3" alt="Project 3">
+                        <div class="project-overlay">
+                            <span class="project-title">Network Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies -->
+        <section id="hobbies" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Hobbies</h2>
+                <div class="hobbies-grid">
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Game</h3>
+                        <p>Game Fav: Garena Delta Force</p>
+                    </div>
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h3>Coding & Network</h3>
+                        <p>Hobby membuat website dan konfigurasi Mikrotik</p>
+                    </div>
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Music</h3>
+                        <p>Mendengarkan lagu JKT48 - <a href="https://www.tiktok.com/@jkt48_lily" target="_blank">My Oshi 'Hillary Abigail Mantiri/Lily'</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Biodata -->
+        <section id="biodata" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Biodata</h2>
+                <div class="biodata-grid">
+                    <div class="biodata-item">
+                        <i class="fas fa-user"></i>
+                        <h3>Nama Lengkap</h3>
+                        <p>[Masukkan Nama Lengkap Anda]</p>
+                    </div>
+                    <div class="biodata-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Tempat, Tanggal Lahir</h3>
+                        <p>[Masukkan TTL Anda]</p>
+                    </div>
+                    <div class="biodata-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Pendidikan Terakhir</h3>
+                        <p>[Masukkan Pendidikan Anda]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-grid">
+                    <a href="https://wa.me/6281234567890" class="contact-item" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://instagram.com/yourusername" class="contact-item" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/yourusername" class="contact-item" target="_blank">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="mailto:your.email@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://t.me/yourusername" class="contact-item" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Preview Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="" alt="Project">
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <a href="#" id="modalLink" class="modal-link" target="_blank">View on GitHub →</a>
+            </div>
+        </div>
     </div>
-
-    <!-- Sections -->
-    <section id="home" class="section active">
-        <div class="home-content">
-            <h1 class="main-title">WebDev & Network Engineer</h1>
-            <p class="home-text">Penuh semangat dan siap mengubah ide menjadi kenyataan digital!</p>
-            <blockquote class="motivation">"Dream big, code hard, network smart! 🚀"</blockquote>
-        </div>
-    </section>
-
-    <section id="about" class="section">
-        <div class="about-content">
-            <h2>Pria ambisius dengan sejuta skill dan 1000 mimpi 🔥</h2>
-        </div>
-    </section>
-
-    <section id="skills" class="section">
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fab fa-html5"></i>
-                <span>HTML</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-css3-alt"></i>
-                <span>CSS</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-js-square"></i>
-                <span>JavaScript</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-python"></i>
-                <span>Python</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-cuttlefish"></i>
-                <span>C++</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-laravel"></i>
-                <span>Laravel</span>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-database"></i>
-                <span>MySQL</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-terminal"></i>
-                <span>Winbox</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-cisco"></i>
-                <span>Cisco PT</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-visual-studio-code"></i>
-                <span>VS Code</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="section">
-        <div class="projects-container">
-            <div class="project-card active" data-preview="Project 1 - Portfolio Website">
-                <img src="https://via.placeholder.com/400x250/00d4ff/ffffff?text=Project+1" alt="Project 1">
-            </div>
-            <div class="project-card hidden">
-                <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Project+2" alt="Project 2">
-            </div>
-            <div class="project-card hidden">
-                <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Project+3" alt="Project 3">
-            </div>
-        </div>
-        <div class="project-preview" id="projectPreview">
-            <span class="close-preview">&times;</span>
-            <h3 id="previewTitle"></h3>
-            <a href="#" class="preview-link" target="_blank">View on GitHub →</a>
-        </div>
-    </section>
-
-    <section id="hobbies" class="section">
-        <div class="hobbies-grid">
-            <div class="hobby-card">
-                <div class="hobby-icon">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h3>Game</h3>
-                <p>Game Fav: Garena Delta Force</p>
-            </div>
-            <div class="hobby-card">
-                <div class="hobby-icon">
-                    <i class="fas fa-wifi"></i>
-                </div>
-                <h3>Coding & Network</h3>
-                <p>Hobby membuat website dan konfigurasi Mikrotik</p>
-            </div>
-            <div class="hobby-card">
-                <div class="hobby-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <h3>Music</h3>
-                <p>Mendengarkan lagu JKT48 - <a href="https://www.tiktok.com/@jkt48_lily" target="_blank">My Oshi 'Hillary Abigail Mantiri/Lily'</a></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="biodata" class="section">
-        <div class="biodata-container">
-            <div class="biodata-card slide-in">
-                <h2><i class="fas fa-user"></i> Nama Lengkap</h2>
-                <p>[Masukkan Nama Lengkap Anda]</p>
-            </div>
-            <div class="biodata-card slide-in">
-                <h2><i class="fas fa-calendar"></i> Tempat, Tanggal Lahir</h2>
-                <p>[Masukkan TTL Anda]</p>
-            </div>
-            <div class="biodata-card slide-in">
-                <h2><i class="fas fa-graduation-cap"></i> Pendidikan Terakhir</h2>
-                <p>[Masukkan Pendidikan Anda]</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="contact-grid">
-            <a href="https://wa.me/6281234567890" class="contact-card" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://instagram.com/yourusername" class="contact-card" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://x.com/yourusername" class="contact-card" target="_blank">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="mailto:your.email@gmail.com" class="contact-card">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://t.me/yourusername" class="contact-card" target="_blank">
-                <i class="fab fa-telegram"></i>
-            </a>
-        </div>
-    </section>
 
     <script src="script.js"></script>
 </body>
-  </html>
+</html>
