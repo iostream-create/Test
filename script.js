@@ -1,51 +1,48 @@
-// Navigation
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('.section');
-const mainContent = document.querySelector('.main-content');
+// MENU Toggle
+const menuBtn = document.getElementById('menuBtn');
+const menuDropdown = document.getElementById('menuDropdown');
+const menuLinks = document.querySelectorAll('.menu-link');
 
-let currentSection = 'home';
+// Toggle menu
+menuBtn.addEventListener('click', () => {
+    menuDropdown.classList.toggle('active');
+});
 
-// Smooth section switching
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetSection = link.dataset.section;
-        
-        // Update active nav
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        // Switch sections
-        sections.forEach(section => {
-            section.classList.remove('active');
-            if (section.id === targetSection) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                section.classList.add('active');
-                currentSection = targetSection;
-            }
-        });
-        
-        // Scroll to top of section
-        setTimeout(() => {
-            window.scrollTo({
-                top: section.offsetTop - 200,
-                behavior: 'smooth'
+// Close menu when clicking link
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuDropdown.classList.remove('active');
+        // Smooth scroll to section ONLY when menu clicked
+        const targetId = link.dataset.section;
+        const targetSection = document.getElementById(targetSection);
+        if (targetSection) {
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
             });
-        }, 100);
+        }
     });
 });
 
-// Rocket animation every 10 seconds
+// Close menu on outside click
+document.addEventListener('click', (e) => {
+    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+        menuDropdown.classList.remove('active');
+    }
+});
+
+// NORMAL SCROLL - NO AUTO NAVIGATION
+// User has FULL scroll control - NO interference
+
+// Rocket every 10s
 setInterval(() => {
-    const rocket = document.querySelector('.rocket');
-    rocket.classList.add('show');
-    
+    document.querySelector('.rocket').classList.add('show');
     setTimeout(() => {
-        rocket.classList.remove('show');
+        document.querySelector('.rocket').classList.remove('show');
     }, 4000);
 }, 10000);
 
-// Projects functionality
+// Projects modal
 const projectCards = document.querySelectorAll('.project-card');
 const modal = document.getElementById('projectModal');
 const modalImage = document.getElementById('modalImage');
@@ -54,15 +51,10 @@ const modalLink = document.getElementById('modalLink');
 const modalClose = document.querySelector('.modal-close');
 
 const projectData = [
-    { img: 'https://via.placeholder.com/500x300/1e40af/ffffff?text=Project+1', title: 'Portfolio Website', url: 'https://github.com/yourusername/project1' },
-    { img: 'https://via.placeholder.com/500x300/3730a3/ffffff?text=Project+2', title: 'E-Commerce App', url: 'https://github.com/yourusername/project2' },
-    { img: 'https://via.placeholder.com/500x300/581c87/ffffff?text=Project+3', title: 'Network Dashboard', url: 'https://github.com/yourusername/project3' }
+    { img: 'https://via.placeholder.com/600x350/1e40af/ffffff?text=Project+1', title: 'Portfolio Website', url: 'https://github.com/yourusername/project1' },
+    { img: 'https://via.placeholder.com/600x350/3730a3/ffffff?text=Project+2', title: 'E-Commerce App', url: 'https://github.com/yourusername/project2' },
+    { img: 'https://via.placeholder.com/600x350/581c87/ffffff?text=Project+3', title: 'Network Dashboard', url: 'https://github.com/yourusername/project3' }
 ];
-
-// Show first project
-setTimeout(() => {
-    projectCards[0].classList.add('active');
-}, 500);
 
 projectCards.forEach((card, index) => {
     card.addEventListener('click', () => {
@@ -74,80 +66,79 @@ projectCards.forEach((card, index) => {
     });
 });
 
-// Close modal
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
-
 function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-// Biodata animation
-const biodataObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+// Fade in animations on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('animate');
-            }, index * 200);
+            entry.target.classList.add('fade-in');
         }
     });
-}, { threshold: 0.2 });
+}, observerOptions);
 
-document.querySelectorAll('.biodata-item').forEach(item => {
-    biodataObserver.observe(item);
+// Observe all sections and biodata items
+document.querySelectorAll('.section, .biodata-item').forEach(el => {
+    fadeObserver.observe(el);
 });
 
-// Smooth scrolling for sections
-document.querySelectorAll('.section').forEach(section => {
-    section.addEventListener('wheel', (e) => {
-        e.stopPropagation();
-    }, { passive: false });
+// Winbox icon custom hover
+document.querySelector('.skill-item[data-skill="winbox"]').addEventListener('mouseenter', function() {
+    this.style.animation = 'spin 1s ease-in-out';
 });
 
-// Preload and performance
+document.querySelector('.skill-item[data-skill="winbox"]').addEventListener('mouseleave', function() {
+    this.style.animation = 'none';
+});
+
+// Add spin animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes spin {
+        0% { transform: translateY(-25px) scale(1.08) rotate(0deg); }
+        50% { transform: translateY(-25px) scale(1.08) rotate(180deg); }
+        100% { transform: translateY(-25px) scale(1.08) rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
+
+// Smooth hover effects
+document.querySelectorAll('.skill-item, .hobby-card, .contact-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        item.style.willChange = 'transform';
+    });
+    item.addEventListener('mouseleave', () => {
+        item.style.willChange = 'auto';
+    });
+});
+
+// Performance: Preload critical assets
 window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-    // Animate first project cards
+    document.body.classList.add('loaded');
+    
+    // Stagger project cards
     projectCards.forEach((card, index) => {
         setTimeout(() => {
             card.style.opacity = '1';
-            card.style.transform = 'scale(1) translateY(0)';
-        }, index * 200);
+            card.style.transform = 'scale(1)';
+        }, index * 150);
     });
 });
 
-// Touch/swipe support for mobile
-let touchStartY = 0;
-let touchEndY = 0;
-
-mainContent.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-}, { passive: true });
-
-mainContent.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-}, { passive: true });
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchEndY < touchStartY - swipeThreshold) {
-        // Swipe up - next section
-        const currentIndex = Array.from(sections).indexOf(document.querySelector('.section.active'));
-        if (currentIndex < sections.length - 1) {
-            const nextLink = document.querySelector(`[data-section="${sections[currentIndex + 1].id}"]`);
-            nextLink.click();
-        }
+// Mobile optimizations
+if ('ontouchstart' in window) {
+    document.body.classList.add('touch-device');
     }
-    if (touchEndY > touchStartY + swipeThreshold) {
-        // Swipe down - prev section
-        const currentIndex = Array.from(sections).indexOf(document.querySelector('.section.active'));
-        if (currentIndex > 0) {
-            const prevLink = document.querySelector(`[data-section="${sections[currentIndex - 1].id}"]`);
-            prevLink.click();
-        }
-    }
-}
