@@ -86,9 +86,67 @@ function getCurrentLocation() {
     const input = document.getElementById('shareloc');
     
     if (!navigator.geolocation) {
-        alert('❌ Browser tidak mendukung geolocation');
+        alert('❌ Browser tidak support GPS');
         return;
     }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GPS...';
+
+    // ⚡ OPTIMASI: Timeout 8 detik + low accuracy untuk cepat
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            // ✅ SUKSES - Format koordinat
+            const lat = position.coords.latitude.toFixed(6);
+            const lng = position.coords.longitude.toFixed(6);
+            input.value = `${lat}, ${lng} ✅`;
+            input.setAttribute('readonly', true);
+            
+            btn.innerHTML = '<i class="fas fa-check"></i> OK!';
+            btn.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-location-arrow"></i> GPS OK';
+                btn.disabled = false;
+            }, 2000);
+        },
+        function(error) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-location-arrow"></i> GPS Manual';
+            
+            // 🚀 AUTO ISI KOORDINAT JAKARTA jika gagal
+            const fallbackLat = -6.2088;
+            const fallbackLng = 106.8456;
+            input.value = `${fallbackLat}, ${fallbackLng} (Jakarta) ✏️`;
+            
+            let errorMsg = '';
+            switch(error.code) {
+                case 1: // Permission denied
+                    errorMsg = 'GPS ditolak. Koordinat Jakarta diisi otomatis.';
+                    break;
+                case 2: // Position unavailable
+                    errorMsg = 'GPS tidak tersedia. Pakai koordinat Jakarta.';
+                    break;
+                case 3: // Timeout
+                    errorMsg = 'GPS lambat (timeout). Pakai koordinat Jakarta.';
+                    break;
+                default:
+                    errorMsg = 'GPS error. Koordinat Jakarta diisi otomatis.';
+            }
+            
+            // 💡 Fallback: Auto isi Jakarta + boleh edit manual
+            input.removeAttribute('readonly');
+            console.log('GPS Error:', errorMsg);
+            alert(`⚠️ ${errorMsg}\n\n📍 Koordinat Jakarta: ${input.value}\n✏️ Klik kolom untuk edit manual`);
+        },
+        {
+            // ⚡ SETTING CEPAT & AKURAT
+            enableHighAccuracy: false,  // Low accuracy = CEPAT
+            timeout: 8000,             // 8 detik max
+            maximumAge: 30000          // Cache 30 detik
+        }
+    );
+}
 
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mendapatkan...';
