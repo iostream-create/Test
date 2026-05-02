@@ -1,7 +1,119 @@
- <div class="deck">
-        <div>class="card c1" style="z-index: 1;">project A</div>
-        <div>class="card c2" style="z-index: 2;">project B</div>
-        <div>class="card c3" style="z-index: 3;">project C</div>
-        <div>class="card c4" style="z-index: 2;">project D</div>
-        <div>class="card c5" style="z-index: 1;">project E</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar IndiHome - Internet Cepat & Stabil</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <i class="fas fa-home"></i>
+        </div>
     </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-wifi"></i> IndiHome</h1>
+            <p>Pilih Paket Internet Tercepat untuk Rumah Anda</p>
+        </div>
+
+        <!-- Paket Section -->
+        <div class="paket-section" id="paketSection">
+            <div class="paket-card" data-paket="20Mbps - Rp216.000/bln">
+                <div class="paket-speed">20</div>
+                <div class="paket-harga">Rp 216.000 /bln</div>
+                <div class="paket-device">Optimal 1-4 Device</div>
+            </div>
+            <div class="paket-card" data-paket="50Mbps - Rp271.000/bln">
+                <div class="paket-speed">50</div>
+                <div class="paket-harga">Rp 271.000 /bln</div>
+                <div class="paket-device">Optimal 1-9 Device</div>
+            </div>
+            <div class="paket-card" data-paket="75Mbps - Rp305.000/bln">
+                <div class="paket-speed">75</div>
+                <div class="paket-harga">Rp 305.000 /bln</div>
+                <div class="paket-device">Optimal 1-20 Device</div>
+            </div>
+            <div class="paket-card" data-paket="150Mbps - Rp422.000/bln">
+                <div class="paket-speed">150</div>
+                <div class="paket-harga">Rp 422.000 /bln</div>
+                <div class="paket-device">Optimal 1-40 Device</div>
+            </div>
+            <div class="paket-card" data-paket="200Mbps - Rp577.000/bln">
+                <div class="paket-speed">200</div>
+                <div class="paket-harga">Rp 577.000 /bln</div>
+                <div class="paket-device">Optimal 1-68 Device</div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section" id="formSection">
+            <button class="back-btn" onclick="showPaketSection()">
+                <i class="fas fa-arrow-left"></i> Pilih Paket Lain
+            </button>
+            
+            <h2><i class="fas fa-user-plus"></i> Isi Data Pendaftaran</h2>
+            
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label>Paket Terpilih</label>
+                    <input type="text" id="paketTerpilih" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Nama Sesuai KTP *</label>
+                    <input type="text" id="nama" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>No HP 1 *</label>
+                    <input type="tel" id="hp1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>No HP 2</label>
+                    <input type="tel" id="hp2">
+                </div>
+
+                <div class="form-group">
+                    <label>Lokasi Rumah (Klik pada peta)</label>
+                    <input type="text" id="shareloc" placeholder="Klik pada peta untuk memilih lokasi" readonly>
+                    <div id="map"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto Rumah *</label>
+                    <div class="file-upload">
+                        <input type="file" id="fotoRumah" accept="image/*" required>
+                        <label for="fotoRumah" class="file-upload-label">
+                            <i class="fas fa-camera"></i> Pilih Foto Rumah
+                        </label>
+                    </div>
+                    <img id="fotoPreview" class="file-preview" style="display: none;">
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Mengirim data ke WhatsApp...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps API - GANTI YOUR_GOOGLE_MAPS_API_KEY -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap" async defer></script>
+    <script src="script.js"></script>
+</body>
+</html>
