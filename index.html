@@ -84,6 +84,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Lokasi Rumah *</label>
+                    <div class="location-input">
+                        <input type="text" id="shareloc" placeholder="Klik tombol untuk dapatkan lokasi atau ketik manual" readonly>
+                        <button type="button" id="getLocationBtn" class="get-location-btn">
+                            <i class="fas fa-location-arrow"></i> Dapatkan Lokasi
+                        </button>
+                    </div>
+                    <small style="color: #666; display: block; margin-top: 5px;">Koordinat: lat,lng atau alamat lengkap (contoh: -6.2088, 106.8456)</small>
+                </div>
+
+                <div class="form-group">
                     <label>Foto Rumah *</label>
                     <div class="file-upload">
                         <input type="file" id="fotoRumah" accept="image/*" required>
@@ -106,8 +117,6 @@
         </div>
     </div>
 
-    <!-- Google Maps API - GANTI YOUR_GOOGLE_MAPS_API_KEY -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap" async defer></script>
     <script src="script.js"></script>
 </body>
 </html>
