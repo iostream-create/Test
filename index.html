@@ -86,12 +86,17 @@
                 <div class="form-group">
                     <label>Lokasi Rumah *</label>
                     <div class="location-input">
-                        <input type="text" id="shareloc" placeholder="Klik tombol untuk dapatkan lokasi atau ketik manual" readonly>
-                        <button type="button" id="getLocationBtn" class="get-location-btn">
-                            <i class="fas fa-location-arrow"></i> Dapatkan Lokasi
+                        <input type="text" id="shareloc" placeholder="Klik GPS/IP untuk lokasi otomatis">
+                        <button type="button" id="getLocationBtn" class="get-location-btn gps-btn">
+                            <i class="fas fa-location-arrow"></i> GPS
+                        </button>
+                        <button type="button" id="getIPLocationBtn" class="get-location-btn ip-btn">
+                            <i class="fas fa-globe"></i> IP
                         </button>
                     </div>
-                    <small style="color: #666; display: block; margin-top: 5px;">Koordinat: lat,lng atau alamat lengkap (contoh: -6.2088, 106.8456)</small>
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        Atau ketik manual: lat,lng (contoh: -6.2088, 106.8456)
+                    </small>
                 </div>
 
                 <div class="form-group">
