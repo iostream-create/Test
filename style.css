@@ -204,17 +204,40 @@ body {
     transform: translateY(-2px);
 }
 
-#map {
-    height: 300px;
-    border-radius: 12px;
-    border: 2px solid #e0e0e0;
-    margin-top: 10px;
-    transition: all 0.3s ease;
+.location-input {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
 }
 
-#map:focus {
-    border-color: #ff0000;
-    box-shadow: 0 0 20px rgba(255,0,0,0.2);
+.location-input input {
+    flex: 1;
+}
+
+.get-location-btn {
+    background: linear-gradient(45deg, #00c851, #007e33);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-width: 160px;
+}
+
+.get-location-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,200,81,0.4);
+}
+
+.get-location-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .file-upload {
@@ -250,6 +273,7 @@ body {
     max-height: 200px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    object-fit: cover;
 }
 
 .submit-btn {
@@ -287,6 +311,7 @@ body {
     cursor: pointer;
     margin-bottom: 20px;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .back-btn:hover {
@@ -328,10 +353,29 @@ body {
     
     .paket-section {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .form-section {
         padding: 20px;
         margin: 10px;
     }
-  }
+    
+    .location-input {
+        flex-direction: column;
+    }
+    
+    .get-location-btn {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .logo i {
+        font-size: 24px;
+    }
+    }
