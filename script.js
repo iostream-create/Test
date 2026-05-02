@@ -1,6 +1,6 @@
 let selectedPaket = '';
 // 🔥 GANTI INI DENGAN NOMOR WA AKTIFMU (format 62xxxxxxxxxx)
-const waNumber = '62882020063479'; 
+const waNumber = '6285122458298'; 
 
 document.addEventListener('DOMContentLoaded', function() {
     // 1. PAKET SELECTION
