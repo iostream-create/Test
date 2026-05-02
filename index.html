@@ -1,123 +1,117 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebDev & Network Engineer</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-
-  <!-- ICON -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WebDev & Network Engineer | Biodata</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
+  <canvas id="bgCanvas"></canvas>
 
-<!-- BACKGROUND -->
-<div class="particles"></div>
-<div class="rocket"></div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">MyBio</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About me</a></li>
+      <li><a href="#skill">Skill</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#biodata">Biodata</a></li>
+      <li><a href="#hoby">Hoby</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="burger" id="burger"><i class="fa-solid fa-bars"></i></div>
+  </nav>
 
-<!-- NAVBAR -->
-<nav>
-  <h1>WebDev&Network Engineer</h1>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skill">Skill</a></li>
-    <li><a href="#project">Project</a></li>
-    <li><a href="#hobby">Hobby</a></li>
-    <li><a href="#biodata">Biodata</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HOME -->
-<section id="home" class="section">
-  <h2>WebDev & Network Engineer</h2>
-  <img src="profile.jpg" class="profile">
-  <p>Saya adalah developer yang fokus pada web development & networking.</p>
-  <p class="motivasi">"Terus belajar, berkembang, dan kejar mimpi 🔥"</p>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <h2>About Me</h2>
-  <p>Pria ambisius dengan sejuta skil dan 1000 mimpi🔥</p>
-</section>
-
-<!-- SKILL -->
-<section id="skill" class="section">
-  <h2>Skill</h2>
-  <div class="grid">
-    <div class="card"><i class="fab fa-html5"></i><p>HTML</p></div>
-    <div class="card"><i class="fab fa-css3-alt"></i><p>CSS</p></div>
-    <div class="card"><i class="fab fa-js"></i><p>JS</p></div>
-    <div class="card"><i class="fab fa-python"></i><p>Python</p></div>
-    <div class="card"><i class="fas fa-code"></i><p>C+</p></div>
-    <div class="card"><i class="fab fa-laravel"></i><p>Laravel</p></div>
-    <div class="card"><i class="fas fa-database"></i><p>MySQL</p></div>
-    <div class="card"><i class="fab fa-github"></i><p>GitHub</p></div>
-    <div class="card"><i class="fas fa-network-wired"></i><p>Winbox</p></div>
-    <div class="card"><i class="fas fa-project-diagram"></i><p>Cisco</p></div>
-    <div class="card"><i class="fas fa-code"></i><p>VS Code</p></div>
-  </div>
-</section>
-
-<!-- PROJECT -->
-<section id="project" class="section">
-  <h2>Project</h2>
-  <div class="project-container">
-    <img src="p1.jpg" class="project active">
-    <img src="p2.jpg" class="project">
-    <img src="p3.jpg" class="project">
-  </div>
-  <div class="preview hidden">
-    <p>Klik untuk lihat project</p>
-  </div>
-</section>
-
-<!-- HOBBY -->
-<section id="hobby" class="section">
-  <h2>Hobby</h2>
-  <div class="grid">
-    <div class="card">
-      <i class="fas fa-gamepad"></i>
-      <p>Game Fav Garena Delta Force</p>
+  <!-- HOME -->
+  <section id="home" class="section home reveal">
+    <h1 class="title">WebDev & Network Engineer</h1>
+    <div class="profile-wrap">
+      <div class="profile-ring"></div>
+      <img src="https://i.pravatar.cc/300" alt="Foto Profil" class="profile-img" />
     </div>
-    <div class="card">
-      <i class="fas fa-wifi"></i>
-      <p>Hoby membuat website dan konfigurasi mikrotik</p>
+    <p class="tagline">Halo, saya seorang Web Developer & Network Engineer 👋</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section reveal">
+    <h2>About Me</h2>
+    <div class="glass-card">
+      <p>Saya adalah seorang yang passionate di bidang pengembangan web dan jaringan komputer.
+         Saya senang membangun aplikasi web modern serta mendesain infrastruktur jaringan yang andal.</p>
     </div>
-    <div class="card">
-      <i class="fas fa-music"></i>
-      <p>
-        Mendengarkan lagu JKT48 - My Oshi 
-        <a href="https://tiktok.com/@jkt48_lily" target="_blank">Hillary Abigail Mantiri/Lily</a>
-      </p>
+  </section>
+
+  <!-- SKILL -->
+  <section id="skill" class="section reveal">
+    <h2>Skill</h2>
+    <div class="grid">
+      <div class="glass-card icon-card"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+      <div class="glass-card icon-card"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+      <div class="glass-card icon-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+      <div class="glass-card icon-card"><i class="fa-brands fa-react"></i><span>React</span></div>
+      <div class="glass-card icon-card"><i class="fa-solid fa-network-wired"></i><span>Networking</span></div>
+      <div class="glass-card icon-card"><i class="fa-solid fa-server"></i><span>Server</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- BIODATA -->
-<section id="biodata" class="section">
-  <h2>Biodata</h2>
-  <div class="bio">
-    <p>Nama: Nama Kamu</p>
-    <p>TTL: Tempat, Tanggal Lahir</p>
-    <p>Pendidikan: Terakhir</p>
-  </div>
-</section>
+  <!-- PROJECT -->
+  <section id="project" class="section reveal">
+    <h2>Project</h2>
+    <div class="project-stage" id="projectStage">
+      <div class="project-card side left" data-link="https://github.com/">
+        <img src="https://picsum.photos/id/1015/400/300" alt="Project 1" />
+        <p>Project 1</p>
+      </div>
+      <div class="project-card center" data-link="https://github.com/">
+        <img src="https://picsum.photos/id/1025/400/300" alt="Project Utama" />
+        <p>Project Utama</p>
+      </div>
+      <div class="project-card side right" data-link="https://github.com/">
+        <img src="https://picsum.photos/id/1035/400/300" alt="Project 2" />
+        <p>Project 2</p>
+      </div>
+    </div>
+    <p class="hint">Klik kartu tengah untuk membuka, klik lagi untuk zoom & ke GitHub</p>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <div class="grid">
-    <a href="#"><i class="fab fa-whatsapp"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-x-twitter"></i></a>
-    <a href="#"><i class="fab fa-telegram"></i></a>
-    <a href="#"><i class="fas fa-envelope"></i></a>
-  </div>
-</section>
+  <!-- BIODATA -->
+  <section id="biodata" class="section reveal">
+    <h2>Biodata</h2>
+    <div class="grid">
+      <div class="glass-card"><strong>Nama:</strong><br/>Nama Anda</div>
+      <div class="glass-card"><strong>TTL:</strong><br/>Kota, 01 Jan 2000</div>
+      <div class="glass-card"><strong>Pendidikan:</strong><br/>Teknik Informatika</div>
+      <div class="glass-card"><strong>Domisili:</strong><br/>Indonesia</div>
+    </div>
+  </section>
 
+  <!-- HOBY -->
+  <section id="hoby" class="section reveal">
+    <h2>Hoby</h2>
+    <div class="grid">
+      <div class="glass-card icon-card pulse"><i class="fa-solid fa-gamepad"></i><span>Gaming</span></div>
+      <div class="glass-card icon-card pulse"><i class="fa-solid fa-music"></i><span>Music</span></div>
+      <div class="glass-card icon-card pulse"><i class="fa-solid fa-book"></i><span>Reading</span></div>
+      <div class="glass-card icon-card pulse"><i class="fa-solid fa-code"></i><span>Coding</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section reveal">
+    <h2>Contact</h2>
+    <div class="grid">
+      <a href="https://wa.me/6281234567890" target="_blank" class="glass-card icon-card"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+      <a href="https://instagram.com/" target="_blank" class="glass-card icon-card"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+      <a href="mailto:email@example.com" class="glass-card icon-card"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
+      <a href="https://github.com/" target="_blank" class="glass-card icon-card"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
+    </div>
+  </section>
+
+  <footer><p>© 2026 — Made with ❤️</p></footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
