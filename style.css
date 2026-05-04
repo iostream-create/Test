@@ -1,120 +1,160 @@
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-html{scroll-behavior:smooth}
-body{
-  color:#fff;
-  background:linear-gradient(160deg,#0a0a1f 0%,#1a1240 35%,#2d1b69 60%,#0a0a1f 100%);
-  background-attachment:fixed;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-
-/* NAVBAR */
-.navbar{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:15px 40px;
-  background:rgba(10,10,31,0.4);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-.logo{font-size:1.4rem;font-weight:bold;background:linear-gradient(90deg,#6a8dff,#b58dff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:25px;list-style:none}
-.nav-links a{color:#fff;text-decoration:none;font-size:.95rem;transition:.3s;position:relative}
-.nav-links a:hover{color:#9d7bff}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:2px;background:#9d7bff;transition:.3s}
-.nav-links a:hover::after{width:100%}
-.burger{display:none;font-size:1.5rem;cursor:pointer}
-
-/* SECTIONS */
-.section{
-  position:relative;z-index:1;
-  min-height:100vh;
-  padding:120px 30px 60px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-}
-.section h2{
-  font-size:2.2rem;margin-bottom:30px;
-  background:linear-gradient(90deg,#6a8dff,#b58dff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+:root {
+    --bg-gradient: linear-gradient(135deg, #05000a 0%, #120124 50%, #1d023d 100%);
+    --glass: rgba(255, 255, 255, 0.04);
+    --border-glass: rgba(255, 255, 255, 0.08);
 }
 
-/* HOME */
-.title{
-  font-size:clamp(1.8rem,5vw,3rem);font-weight:800;
-  background:linear-gradient(90deg,#6a8dff,#b58dff,#fff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  margin-bottom:30px;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
 }
-.profile-wrap{position:relative;width:200px;height:200px;margin:20px auto}
-.profile-ring{
-  position:absolute;inset:-8px;border-radius:50%;
-  background:conic-gradient(#6a8dff,#b58dff,#6a8dff);
-  animation:spin 6s linear infinite;
+
+body { background: var(--bg-gradient); color: white; overflow-x: hidden; }
+
+.galaxy-bg { position: fixed; width: 100%; height: 100%; z-index: -1; }
+.stars {
+    position: absolute; width: 200%; height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: moveStars 120s linear infinite;
 }
-.profile-img{
-  position:relative;width:100%;height:100%;border-radius:50%;
-  object-fit:cover;border:4px solid #0a0a1f;
+@keyframes moveStars { from {transform: translate(0,0);} to {transform: translate(-50%,-50%);} }
+
+/* Navbar */
+nav { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+.menu-btn {
+    background: var(--glass); padding: 12px 25px; border-radius: 30px;
+    border: 1px solid var(--border-glass); cursor: pointer; backdrop-filter: blur(10px);
 }
-@keyframes spin{to{transform:rotate(360deg)}}
-.tagline{margin-top:25px;font-size:1.1rem;color:#cfd2ff}
-
-/* GLASS */
-.glass-card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;
-  padding:25px;
-  transition:.4s;
-  color:#fff;text-decoration:none;
+.nav-links {
+    max-height: 0; overflow: hidden; list-style: none;
+    background: rgba(10, 0, 20, 0.95); border-radius: 15px;
+    transition: max-height 0.4s ease-out; margin-top: 10px;
 }
-.glass-card:hover{transform:translateY(-5px);background:rgba(157,123,255,0.15);box-shadow:0 10px 30px rgba(106,141,255,0.3)}
+.nav-links.active { max-height: 500px; padding: 15px; border: 1px solid var(--border-glass); }
+.nav-links li { padding: 10px; text-align: right; }
+.nav-links a { color: white; text-decoration: none; font-size: 0.9rem; }
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;max-width:900px;width:100%}
-.icon-card{display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1/1;gap:10px}
-.icon-card i{font-size:2.5rem;color:#9d7bff}
-.icon-card span{font-size:.95rem}
-.pulse i{animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-
-/* PROJECT */
-.project-stage{position:relative;width:100%;max-width:900px;height:380px;display:flex;justify-content:center;align-items:center}
-.project-card{
-  position:absolute;width:280px;border-radius:20px;overflow:hidden;
-  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
-  cursor:pointer;transition:.6s cubic-bezier(.4,0,.2,1);
+/* Sections - Penambahan Jarak Antar Halaman */
+.container { width: 100%; max-width: 1000px; margin: 0 auto; }
+section {
+    min-height: auto;
+    padding: 100px 20px; /* Jarak atas bawah diperbesar agar tidak numpuk */
+    display: flex; flex-direction: column; align-items: center;
 }
-.project-card img{width:100%;height:200px;object-fit:cover;display:block}
-.project-card p{padding:12px;font-weight:600}
-.project-card.center{z-index:3;transform:scale(1)}
-.project-card.side{opacity:0;transform:scale(.7);z-index:1}
-.project-stage.open .left{opacity:1;transform:translateX(-220px) scale(.85)}
-.project-stage.open .right{opacity:1;transform:translateX(220px) scale(.85)}
-.project-card.zoomed{transform:scale(1.15);z-index:10;box-shadow:0 0 40px rgba(157,123,255,.6)}
-.hint{margin-top:20px;color:#9d9dc7;font-size:.9rem}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(60px);transition:opacity .8s,transform .8s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal.up{transform:translateY(-60px)}
-.reveal.up.visible{transform:translateY(0)}
-
-footer{text-align:center;padding:30px;color:#9d9dc7;position:relative;z-index:1}
-
-/* RESPONSIVE */
-@media (max-width:768px){
-  .nav-links{
-    position:fixed;top:60px;right:-100%;flex-direction:column;
-    background:rgba(10,10,31,0.95);backdrop-filter:blur(15px);
-    width:200px;padding:20px;gap:15px;transition:.4s;
-    border-radius:0 0 0 20px;
-  }
-  .nav-links.active{right:0}
-  .burger{display:block}
-  .navbar{padding:15px 20px}
-  .project-stage.open .left{transform:translateX(-130px) scale(.7)}
-  .project-stage.open .right{transform:translateX(130px) scale(.7)}
-  .project-card{width:220px}
+/* Pastikan ini ada di bagian proj-card */
+.proj-card {
+    position: absolute;
+    width: 250px;
+    height: 450px;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 1px solid var(--border-glass);
+    cursor: pointer;
+    z-index: 5; /* Tambahkan ini */
 }
+
+.main-p { z-index: 10; } /* Project utama tetap paling atas awalannya */
+
+#home { padding-top: 180px; padding-bottom: 150px; }
+.header-title { font-family: monospace; font-size: 1.8rem; margin-bottom: 40px; text-align: center; color: #bb86fc; }
+.profile-container {
+    width: 180px; height: 180px; border-radius: 50%;
+    border: 4px solid rgba(150, 150, 150, 0.3); margin-bottom: 25px;
+}
+.profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+/* Labels */
+.section-label {
+    font-size: 1.3rem; letter-spacing: 4px; color: rgba(255,255,255,0.7);
+    margin-bottom: 40px; text-align: center; width: 100%; text-transform: uppercase;
+}
+.section-label::after {
+    content: ''; display: block; width: 50px; height: 2px; background: #bb86fc; margin: 12px auto;
+}
+
+/* Glass Box */
+.glass-box {
+    background: var(--glass); padding: 35px; border-radius: 25px;
+    text-align: center; backdrop-filter: blur(10px); border: 1px solid var(--border-glass);
+    width: 100%; max-width: 600px;
+}
+.line { height: 1px; background: rgba(255,255,255,0.15); margin: 20px 0; }
+
+/* Grids */
+.bio-grid, .hobby-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px; width: 100%;
+}
+.bio-card, .h-card {
+    background: var(--glass); padding: 25px; border-radius: 20px;
+    border: 1px solid var(--border-glass); text-align: center; backdrop-filter: blur(5px);
+}
+
+/* Skills - Ikon Berwarna */
+.skill-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px; width: 100%;
+}
+.skill-box {
+    background: var(--glass); padding: 15px 20px; border-radius: 50px;
+    display: flex; align-items: center; justify-content: center; gap: 12px; 
+    border: 1px solid var(--border-glass); transition: 0.3s;
+}
+.skill-box i { font-size: 1.6rem; }
+
+/* Project Slider (Foto Besar) */
+.project-slider {
+    position: relative; width: 100%; height: 550px;
+    display: flex; justify-content: center; align-items: center;
+}
+.proj-card {
+    position: absolute; width: 250px; height: 450px; /* Diperbesar maksimal */
+    border-radius: 25px; overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 1px solid var(--border-glass); cursor: pointer;
+}
+.proj-card img { width: 100%; height: 100%; object-fit: cover; }
+.proj-card p {
+    position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.85);
+    padding: 15px; font-size: 0.9rem; text-align: center;
+}
+.side-left, .side-right { opacity: 0; pointer-events: none; }
+.main-p { z-index: 10; transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+/* Contact */
+.contact-row a { font-size: 3rem; margin: 0 25px; transition: 0.3s; }
+
+@media (max-width: 600px) {
+    .bio-grid, .skill-list, .hobby-grid { grid-template-columns: repeat(2, 1fr); }
+    .proj-card { width: 180px; height: 320px; }
+    .project-slider { height: 400px; }
+    section { padding: 80px 20px; }
+}
+ /* Gaya untuk link nama Lily */
+.oshimen-link {
+    color: #00C7FF6B; /* Warna merah */
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.oshimen-link:hover {
+    color: #1AFFB380; /* Merah sedikit terang saat disentuh */
+    text-shadow: 0 0 10px rgba(0, 255, 123, 0.5); /* Efek cahaya merah */
+}
+
+/* Memastikan kartu hobi terlihat bisa diklik */
+.h-card[onclick] {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.h-card[onclick]:hover {
+    transform: translateY(-5px);
+    border-color: rgba(40, 206, 193, 0.49);
+}
+
